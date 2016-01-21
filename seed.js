@@ -21,11 +21,11 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
-var User = Promise.promisifyAll(mongoose.model('User'));
+var Question = Promise.promisifyAll(mongoose.model('Question'));
 
-var seedUsers = function () {
+var seedQuestions = function () {
 
-    var users = [
+    var questions = [
         {
             email: 'testing@fsa.com',
             firstName: 'Lily',
@@ -38,16 +38,16 @@ var seedUsers = function () {
         }
     ];
 
-    return User.createAsync(users);
+    return Question.createAsync(questions);
 
 };
 
 connectToDb.then(function () {
-    User.findAsync({}).then(function (users) {
-        if (users.length === 0) {
-            return seedUsers();
+    Question.findAsync({}).then(function (question) {
+        if (question.length === 0) {
+            return seedQuestions();
         } else {
-            console.log(chalk.magenta('Seems to already be user data, exiting!'));
+            console.log(chalk.magenta('Seems to already be question data, exiting!'));
             process.kill(0);
         }
     }).then(function () {
