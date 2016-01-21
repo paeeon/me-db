@@ -1,7 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 
-var categories = [""];
+var categories = ["personal", "taste", "random", "curveball", "child"];
 
 var schema = new mongoose.Schema({
     text: {
@@ -12,10 +12,10 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Answer'
     }],
-    category: [{
+    category: {
         type: String,
         enum: categories
-    }],
+    },
     approved: {
         type: Boolean
     }
