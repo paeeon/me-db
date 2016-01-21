@@ -1,7 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 
-var categories = [""];
+var categories = ["personal", "taste", "random", "curveball", "child"];
 
 var schema = new mongoose.Schema({
     text: {
