@@ -10,7 +10,7 @@ app.factory('QuestionFactory', function($http) {
                 .then(null, console.error);
         },
         getAllQuestions: function() {
-            $http.get('/api/questions/');
+            $http.get('/api/questions/')
                 .then(extractData)
                 .then(null, console.error);
         }
