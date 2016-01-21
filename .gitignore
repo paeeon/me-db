@@ -1,0 +1,8 @@
+.idea
+node_modules
+npm-debug.log
+public
+.DS_Store
+coverage
+server/env/development.js
+images

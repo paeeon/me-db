@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+@import 'variables';
+
+body {
+  background: white;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+#main {
+  padding-top: 60px;
+  margin: 0 auto;
+}
+
+/* Font styles */
+
+p, span {
+    font-family: $body-fonts;
+}
+
+a {
+    font-family: $body-fonts;
+}
+
+@import 'directives/main';
+@import 'home/main';
+@import 'about/main';
+@import 'tutorial/main';
+@import 'login/main';
