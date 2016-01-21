@@ -28,112 +28,112 @@ var seedQuestions = function () {
     var questions = [
         {
             text: 'What scares you?',
-            category: ['personal'],
+            category: 'personal',
             approved: true
         },
         {
             text: 'Coffee or tea?',
-            category: ['taste'],
+            category: 'taste',
             approved: true
         },
         {
             text: 'Have you ever shoplifted?',
-            category: ['random'],
+            category: 'random',
             approved: true
         },
         {
             text: 'Are you religious?',
-            category: ['personal'],
+            category: 'personal',
             approved: true
         },
         {
             text: "Do your feet smell?",
-            category: ['curveball'],
+            category: 'curveball',
             approved: true
         },
         {
             text: 'Do you like answering questions?',
-            category: ['curveball'],
+            category: 'curveball',
             approved: true
         },
         {
             text: 'Is there someone standing behind you?',
-            category: ['curveball'],
+            category: 'curveball',
             approved: true
         },
         {
             text: "What's your favorite color?",
-            category: ['taste'],
+            category: 'taste',
             approved: true
         },
         {
             text: 'Was it worth it?',
-            category: ['curveball'],
+            category: 'curveball',
             approved: true
         },
         {
             text: "What do you do in your free time?",
-            category: ["personal"],
+            category: "personal",
             approved: true
         },
         {
             text: "What's the craziest thing you've ever done?",
-            category: ['personal'],
+            category: 'personal',
             approved: true
         },
         {
             text: "What color is your toothbrush?",
-            category: ["random"],
+            category: "random",
             approved: true
         },
         {
             text: "When is the last time you showered?",
-            category: ["random"],
+            category: "random",
             approved: true
         },
         {
             text: "Do you like chocolate?",
-            category: ["random"],
+            category: "random",
             approved: true
         },
         {
             text: "Why is that man homeless?",
-            category: ['child'],
+            category: 'child',
             approved: true
         },
         {
             text: "Why don't we want others to see our private parts?",
-            category: ['child'],
+            category: 'child',
             approved: true
         },
         {
             text: "Why are there so many languages in the world?",
-            category: ['child'],
+            category: 'child',
             approved: true
         },
         {
             text: "Where did all the dinosaurs go?",
-            category: ['child'],
+            category: 'child',
             approved: true
         },
         {
             text: "Where do babies come from?",
-            category: ['child'],
+            category: 'child',
             approved: true
         },
         {
             text: 'What is God?',
-            category: ['child'],
+            category: 'child',
             approved: true
         },
         {
             text: 'Where do you come from?',
-            category: ['child'],
+            category: 'child',
             approved: true
         },
         {
             text: 'Do you identify with your heritage?',
-            category: ['child', "personal"],
+            category: "personal",
             approved: true
         }
     ];

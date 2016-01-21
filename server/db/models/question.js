@@ -12,10 +12,10 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Answer'
     }],
-    category: [{
+    category: {
         type: String,
         enum: categories
-    }],
+    },
     approved: {
         type: Boolean
     }
