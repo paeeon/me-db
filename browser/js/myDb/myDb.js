@@ -6,8 +6,8 @@ app.config(function ($stateProvider) {
         controller: 'myDbController',
         resolve: {
             newQuestions: function(QuestionFactory) {
-                // Returns 20 new questions
-                return QuestionFactory.getNewQuestions(20);
+                // Returns first 20 questions
+                return QuestionFactory.getNewQuestions(0, 20);
             }
         }
     });
