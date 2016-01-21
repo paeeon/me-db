@@ -18,4 +18,6 @@ app.controller('myDbController', function ($scope, newQuestions) {
 
     $scope.questions = newQuestions;
 
+    // Get more questions
+
 });
