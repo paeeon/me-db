@@ -5,9 +5,10 @@ navbar {
   border: 0;
   box-shadow: 1px 1px 14px -3px black;
   .container {
-    width: 91%;
+    width: 100%;
     max-width: 1340px;
-    padding-top: 20px;
+    padding-top:10px;
+    padding-bottom: 10px;
   }
   fullstack-logo {
     margin-top: 5px;
@@ -35,7 +36,6 @@ navbar {
   .login-button {
     float: right;
     border: 1px solid black;
-    margin-top: 10px;
     background: none;
     outline: none !important;
   }
@@ -43,7 +43,7 @@ navbar {
     float: right;
     margin-top: 12px;
     span {
-      color: darken($cobalt, 20%);
+      color: darken($cobalt, 30%);
       font-size: 16px;
       margin-right: 5px;
     }
@@ -57,6 +57,7 @@ navbar {
         background: none;
         color: lighten($light-cobalt, 10%);
         text-decoration: none;
+
       }
       &:focus {
         background: none;

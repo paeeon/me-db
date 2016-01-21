@@ -1,9 +1,9 @@
 app.config(function ($stateProvider) {
 
-    $stateProvider.state('myDb', {
-        url: '/db',
-        templateUrl: 'js/myDb/myDb.html',
-        controller: 'myDbController',
+    $stateProvider.state('answerQuestions', {
+        url: '/questions/answer',
+        templateUrl: 'js/answerQuestions/answerQuestions.html',
+        controller: 'AnswerQuestionsController',
         resolve: {
             questions: function(QuestionFactory) {
                 // Returns first 20 questions
@@ -17,7 +17,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('myDbController', function ($scope, questions) {
+app.controller('AnswerQuestionsController', function ($scope, questions) {
 
     $scope.questions = questions;
 

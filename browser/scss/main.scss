@@ -31,6 +31,25 @@ a {
     font-family: $body-fonts;
 }
 
+/* Button styles */
+
+button.btn {
+    font-family: $body-fonts;
+    line-height: 20px;
+    padding-top: 10px;
+    background: $cobalt;
+    color: white;
+    border: 0;
+    text-transform: uppercase;
+    font-weight: 900;
+
+    &.on-dark {
+        background: $coral;
+        color: white;
+        border: 0;
+    }
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
