@@ -21,6 +21,14 @@ body {
   margin: 0 auto;
 }
 
+.spacer {
+  margin-top: 15px;
+}
+
+.big-spacer {
+  margin-top: 30px;
+}
+
 /* Font styles */
 
 p, span {
@@ -55,3 +63,4 @@ button.btn {
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+@import 'answerQuestions/main';
