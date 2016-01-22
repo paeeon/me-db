@@ -19,30 +19,42 @@ app.config(function($stateProvider) {
 
 });
 
-app.controller('AnswerQuestionsController', function($scope, questions, AnswerFactory, loggedInUser) {
+app.controller('AnswerQuestionsController', function($scope, questions, AnswerFactory, loggedInUser, $animate) {
 
+  var questionElement = document.getElementById('question');
   $scope.currentQuestionNum = 0;
-  $scope.answered = 0;
-  // $scope.questionNum = 15;
+
+  $scope.questionNum = 15;
   $scope.question = questions[$scope.currentQuestionNum];
 
-  $scope.value = Math.floor($scope.answered/$scope.questionNum *100);
+  var resetProgressBarValue = function() {
+    return Math.floor($scope.currentQuestionNum/$scope.questionNum *100);
+  };
+
+  $scope.progressBarValue = resetProgressBarValue();
 
   $scope.saveAnswer = function() {
+
     // Adds some other properties to $scope.answer so that the object also has the
     // user._id and question._id reference
     $scope.answer.user = loggedInUser._id;
     $scope.answer.question = questions[$scope.currentQuestionNum]._id;
 
     // Save the answer to the DB
-    AnswerFactory.saveAnswer($scope.answer)
-      .then(function(answer) {
+    $animate.addClass(questionElement, 'fadeOutLeft')
+      .then(function() {
+        return AnswerFactory.saveAnswer($scope.answer)
+      }).then(function(answer) {
+        // Clear the answer text so that the textarea is clear when the question changes
+        $scope.answer.text = "";
         // Increment current question number, so that we know to display a different
         // question to the user
         $scope.currentQuestionNum++;
+        $scope.progressBarValue = resetProgressBarValue();
         $scope.question = questions[$scope.currentQuestionNum];
-      })
-      .then(null, console.error)
+      }).then(function() {
+        return $animate.setClass(questionElement, 'fadeInRight', 'fadeOutLeft');
+      }).then(null, console.error)
   };
 
 });

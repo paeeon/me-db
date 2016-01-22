@@ -1,27 +1,69 @@
 @import '../variables';
 .question {
-  padding: 25px;
-  background: $rose;
+  padding-top: 0;
+  padding-bottom: 25px;
+  background: $lavender;
   border-radius: 5px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  .question-text {
-    color: black;
+  .padded {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  h1.question-text {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-size: 40px;
+    color: darken($indigo, 20%);
+  }
+  .ui.form .field>label {
+    color: darken($indigo, 20%);
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .ui.list, ol.ui.list, ul.ui.list {
+    margin: 0;
+  }
+  .ui.selection.list>.item {
+    padding: 0;
+  }
+  span.question-number {
+    color: $indigo;
+    text-transform: uppercase;
+    font-size: 13px;
   }
   hr {
-    margin-top: 0px;
-    margin-bottom: 25px;
-    height: 1px;
     border: 0;
-    background: darken($rose, 10%);
+    height: 2px;
+    margin-top: 0px;
+    margin-bottom: 35px;
+    background: lighten($indigo, 10%);
+    width: 100px;
   }
   textarea#answerText {
     display: block;
     width: 100%;
-    background: lighten($light-rose, 5%);
+    background: white;
     padding: 10px;
-    border: 0;
+    border: 1px solid white;
+    color: $indigo;
+    background: white;
+    resize: none;
     &:focus {
-      outline: darken($rose, 10%);
+      outline: none;
+      border-color: $indigo;
+      box-shadow: 0 0 10px $indigo;
     }
+  }
+  .progress {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background: lighten($cobalt, 15%);
+    height: 10px;
+    span {
+
+    }
+  }
+  .progress-bar {
+    background: #33B769;
   }
 }
