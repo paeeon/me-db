@@ -22,7 +22,11 @@ app.config(function($stateProvider) {
 app.controller('AnswerQuestionsController', function($scope, questions, AnswerFactory, loggedInUser) {
 
   $scope.currentQuestionNum = 0;
+  $scope.answered = 0;
+  // $scope.questionNum = 15;
   $scope.question = questions[$scope.currentQuestionNum];
+
+  $scope.value = Math.floor($scope.answered/$scope.questionNum *100);
 
   $scope.saveAnswer = function() {
     // Adds some other properties to $scope.answer so that the object also has the
@@ -40,6 +44,5 @@ app.controller('AnswerQuestionsController', function($scope, questions, AnswerFa
       })
       .then(null, console.error)
   };
-
 
 });
