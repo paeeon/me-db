@@ -17,6 +17,6 @@ var ensureAuthenticated = function (req, res, next) {
 router.get('/', function(req, res, next) {
     Question.find({}).exec()
         .then(function(allQuestions) {
-            res.status(200).send(allQuestions);
+            res.status(200).json(allQuestions);
         }).then(null, next);
 });

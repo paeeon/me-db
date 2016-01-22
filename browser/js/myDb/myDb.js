@@ -23,9 +23,12 @@ app.config(function ($stateProvider) {
 app.controller('myDbController', function ($scope, questions, userId) {
 
     $scope.questions = questions;
+
     console.log(userId._id);
 
     $scope.usersQuestions;
+
+
 
     // Get more questions
 
