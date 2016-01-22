@@ -77,6 +77,14 @@ a {
   font-family: $body-fonts;
 }
 
+/* Header styles */
+
+.dark {
+  h1, h2, h3, h4, h5, h6 {
+    color: white;
+  }
+}
+
 
 /* Button styles */
 
@@ -93,9 +101,31 @@ button.btn {
     color: white;
   }
   &.on-dark {
-    background: $fuschia;
+    background: none;
     color: white;
     border: 0;
+  }
+
+}
+
+/* Form styles */
+
+.dark {
+  label {
+    color: lighten($lavender, 20%);
+    font-size: 13px;
+  }
+  input[type=text], input[type=email], input[type=search], input[type=password] {
+    border: 1px solid lighten($lavender, 20%);
+    background: lighten($lavender, 20%);
+    color: $indigo;
+    padding: 10px;
+    &:focus {
+      outline: none;
+      background: white;
+      border-color: $indigo;
+      box-shadow: 0 0 10px $indigo;
+    }
   }
 }
 
