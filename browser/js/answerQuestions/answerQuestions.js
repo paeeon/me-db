@@ -19,9 +19,13 @@ app.config(function ($stateProvider) {
 app.controller('AnswerQuestionsController', function ($scope, questions) {
 
     $scope.currentQuestionNum = 0;
+    $scope.answered = 0;
+    $scope.questionNum = 15;
 
-    // $scope.saveAnswer = function() {
-    //     AnswerFactory.saveAnswer($scope.answer)
-    // }
+    $scope.value = Math.floor($scope.answered/$scope.questionNum *100);
+
+    $scope.saveAnswer = function() {
+        AnswerFactory.saveAnswer($scope.answer)
+    }
 
 });
