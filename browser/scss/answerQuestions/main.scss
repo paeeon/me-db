@@ -1,9 +1,14 @@
 @import '../variables';
 .question {
-  padding: 25px;
+  padding-top: 0;
+  padding-bottom: 25px;
   background: $lavender;
   border-radius: 5px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  .padded {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
   h1.question-text {
     margin-top: 0px;
     margin-bottom: 10px;
@@ -48,5 +53,17 @@
       border-color: $indigo;
       box-shadow: 0 0 10px $indigo;
     }
+  }
+  .progress {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background: lighten($cobalt, 15%);
+    height: 10px;
+    span {
+
+    }
+  }
+  .progress-bar {
+    background: #33B769;
   }
 }

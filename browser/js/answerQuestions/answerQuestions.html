@@ -2,24 +2,25 @@
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
       <div id="question" class="question clearfix animated" ng-hide="transitioning">
-        <div class="clearfix">
-          <span class="question-number pull-left">Question 1 of 15</span>
-          <div class="ui divided selection list pull-right">
-            <a class="item">
-              <div class="ui teal horizontal label">{{ question.category }}</div>
-            </a>
+        <uib-progressbar max="100" value="progressBarValue"></uib-progressbar>
+        <div class="padded">
+          <div class="clearfix">
+            <h1 class="question-text pull-left">{{ question.text }}</h1>
+            <div class="ui divided selection list pull-right">
+              <a class="item">
+                <div class="ui teal horizontal label">{{ question.category }}</div>
+              </a>
+            </div>
           </div>
+          <hr class="pull-left">
+          <form name="questionAnswer" ng-submit="saveAnswer()" class="ui form">
+            <div class="field">
+              <textarea id="answerText" ng-model="answer.text" rows="2"></textarea>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn pull-right" type="submit">Save Answer</button>
+          </form>
         </div>
-        <h1 class="question-text">{{ question.text }}</h1>
-        <hr class="pull-left">
-        <form name="questionAnswer" ng-submit="saveAnswer()" class="ui form">
-          <div class="field">
-            <label id="prompt" for="answerText">Write your answer below…</label>
-            <textarea id="answerText" ng-model="answer.text" rows="2"></textarea>
-          </div>
-          <div class="spacer"></div>
-          <button class="btn pull-right" type="submit">Save Answer</button>
-        </form>
       </div>
     </div>
   </div>

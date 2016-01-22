@@ -23,7 +23,15 @@ app.controller('AnswerQuestionsController', function($scope, questions, AnswerFa
 
   var questionElement = document.getElementById('question');
   $scope.currentQuestionNum = 0;
+
+  $scope.questionNum = 15;
   $scope.question = questions[$scope.currentQuestionNum];
+
+  var resetProgressBarValue = function() {
+    return Math.floor($scope.currentQuestionNum/$scope.questionNum *100);
+  };
+
+  $scope.progressBarValue = resetProgressBarValue();
 
   $scope.saveAnswer = function() {
 
@@ -42,11 +50,11 @@ app.controller('AnswerQuestionsController', function($scope, questions, AnswerFa
         // Increment current question number, so that we know to display a different
         // question to the user
         $scope.currentQuestionNum++;
+        $scope.progressBarValue = resetProgressBarValue();
         $scope.question = questions[$scope.currentQuestionNum];
       }).then(function() {
         return $animate.setClass(questionElement, 'fadeInRight', 'fadeOutLeft');
       }).then(null, console.error)
   };
-
 
 });
