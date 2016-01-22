@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
-            <div class="question clearfix">
-                <h2 class="question-text">{{ question.text }}</h2>
-                <hr>
+            <div id="question" class="question clearfix animated" ng-hide="transitioning">
+                <h1 class="question-text">{{ question.text }}</h1>
+                <hr class="pull-left">
                 <form name="questionAnswer" ng-submit="saveAnswer()" class="ui form">
                     <div class="field">
-                        <label for="answerText">Write your answer below…</label>
+                        <label id="prompt" for="answerText">Write your answer below…</label>
                         <textarea id="answerText" ng-model="answer.text" rows="2"></textarea>
                     </div>
                     <div class="spacer"></div>

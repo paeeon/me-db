@@ -1,9 +1,9 @@
 @import '../variables';
 navbar {
   display: block;
-  background: $cobalt;
+  background: none;
   border: 0;
-  box-shadow: 1px 1px 14px -3px black;
+  box-shadow: 1px 1px 14px -3px (0,0,0,0.2);
   .container {
     width: 100%;
     max-width: 1340px;
@@ -16,18 +16,24 @@ navbar {
     width: 40px;
   }
   a {
-    color: white;
-    font-size: 16px;
+    font-size: 13px;
+    text-transform: uppercase;
   }
   .nav > li > a {
     cursor: pointer;
     transition: color 0.2s;
+    margin-right: 40px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    color: lighten($indigo, 20%);
     &.active {
-      color: lighten($light-cobalt, 10%);
+      color: white;
+      border-bottom: 2px solid white;
     }
     &:hover {
       background: none;
-      color: lighten($light-cobalt, 10%);
+      color: white;
     }
     &:focus {
       background: none;
@@ -44,19 +50,21 @@ navbar {
     float: right;
     margin-top: 12px;
     span {
-      color: darken($cobalt, 30%);
-      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: darken($indigo, 30%);
+      font-size: 13px;
       margin-right: 5px;
     }
     a {
-      color: white;
+      color: lighten($indigo, 20%);
       cursor: pointer;
       &.active {
-        color: lighten($light-cobalt, 10%);
+        color: white;
       }
       &:hover {
         background: none;
-        color: lighten($light-cobalt, 10%);
+        color: white;
         text-decoration: none;
 
       }

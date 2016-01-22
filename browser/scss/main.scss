@@ -4,7 +4,44 @@
 
 @import 'variables';
 body {
-  background: white;
+  background: linear-gradient(294deg, #554faf, #3f2159, #5578a8);
+  background-size: 600% 600%;
+  -webkit-animation: AnimationName 24s ease infinite;
+  -moz-animation: AnimationName 24s ease infinite;
+  animation: AnimationName 24s ease infinite;
+  @-webkit-keyframes AnimationName {
+    0% {
+      background-position: 0% 86%
+    }
+    50% {
+      background-position: 100% 15%
+    }
+    100% {
+      background-position: 0% 86%
+    }
+  }
+  @-moz-keyframes AnimationName {
+    0% {
+      background-position: 0% 86%
+    }
+    50% {
+      background-position: 100% 15%
+    }
+    100% {
+      background-position: 0% 86%
+    }
+  }
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 86%
+    }
+    50% {
+      background-position: 100% 15%
+    }
+    100% {
+      background-position: 0% 86%
+    }
+  }
 }
 
 @mixin clearfix {
@@ -47,17 +84,16 @@ button.btn {
   font-family: $body-fonts;
   line-height: 20px;
   padding-top: 10px;
-  background: $cobalt;
+  background: $fuschia;
+  letter-spacing: .2px;
   color: white;
-  border: 0;
-  text-transform: uppercase;
   font-weight: 900;
   &:hover {
-    background: darken($cobalt, 10%);
+    background: lighten($fuschia, 10%);
     color: white;
   }
   &.on-dark {
-    background: $coral;
+    background: $fuschia;
     color: white;
     border: 0;
   }
