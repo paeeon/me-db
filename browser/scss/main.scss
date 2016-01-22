@@ -3,7 +3,6 @@
 }
 
 @import 'variables';
-
 body {
   background: white;
 }
@@ -29,33 +28,39 @@ body {
   margin-top: 30px;
 }
 
+
 /* Font styles */
 
-p, span {
-    font-family: $body-fonts;
+p,
+span {
+  font-family: $body-fonts;
 }
 
 a {
-    font-family: $body-fonts;
+  font-family: $body-fonts;
 }
+
 
 /* Button styles */
 
 button.btn {
-    font-family: $body-fonts;
-    line-height: 20px;
-    padding-top: 10px;
-    background: $cobalt;
+  font-family: $body-fonts;
+  line-height: 20px;
+  padding-top: 10px;
+  background: $cobalt;
+  color: white;
+  border: 0;
+  text-transform: uppercase;
+  font-weight: 900;
+  &:hover {
+    background: darken($cobalt, 10%);
+    color: white;
+  }
+  &.on-dark {
+    background: $coral;
     color: white;
     border: 0;
-    text-transform: uppercase;
-    font-weight: 900;
-
-    &.on-dark {
-        background: $coral;
-        color: white;
-        border: 0;
-    }
+  }
 }
 
 @import 'directives/main';

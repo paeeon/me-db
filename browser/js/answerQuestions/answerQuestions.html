@@ -2,11 +2,13 @@
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
             <div class="question clearfix">
-                <h2 class="question-text">Who is your father?<!-- {{ question.text }} --></h2>
+                <h2 class="question-text">{{ question.text }}</h2>
                 <hr>
-                <form name="questionAnswer" ng-submit="saveAnswer()">
-                    <label for="answerText">Write your answer below…</label>
-                    <textarea id="answerText" ng-model="answer.text" rows="2"></textarea>
+                <form name="questionAnswer" ng-submit="saveAnswer()" class="ui form">
+                    <div class="field">
+                        <label for="answerText">Write your answer below…</label>
+                        <textarea id="answerText" ng-model="answer.text" rows="2"></textarea>
+                    </div>
                     <div class="spacer"></div>
                     <button class="btn pull-right" type="submit">Save Answer</button>
                 </form>

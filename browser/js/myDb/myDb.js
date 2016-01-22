@@ -20,7 +20,6 @@ app.config(function ($stateProvider) {
 app.controller('myDbController', function ($scope, questions) {
 
     $scope.questions = questions;
-
     // Get more questions
 
 
