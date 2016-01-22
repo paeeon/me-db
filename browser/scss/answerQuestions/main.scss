@@ -1,0 +1,25 @@
+@import '../variables';
+
+.question {
+    padding: 20px;
+    background: $rose;
+    border-radius: 5px;
+    .question-text {
+        color: black;
+    }
+    hr {
+        height: 1px;
+        border: 0;
+        background: darken($rose, 10%);
+    }
+    textarea#answerText {
+        display: block;
+        width: 100%;
+        background: lighten($light-rose, 5%);
+        padding: 10px;
+        border: 0;
+        &:focus {
+            outline: none;
+        }
+    }
+}

@@ -5,7 +5,8 @@ var _ = require('lodash');
 
 var schema = new mongoose.Schema({
     email: {
-        type: String
+        type: String,
+        unique: true
     },
     firstName: {
         type: String
@@ -34,6 +35,20 @@ var schema = new mongoose.Schema({
 schema.methods.sanitize = function () {
     return _.omit(this.toJSON(), ['password', 'salt']);
 };
+
+schema.statics.findOrCreate = function (query) {
+    var User = this;
+    return User.findOne(query).exec()
+    .then(function(found){
+        if (found) return found;
+        var newUser = new User({
+            email: query.email,
+            password: query.password,
+            firstName: query.firstName
+        });
+        return newUser.save()
+    })
+}
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.

@@ -6,7 +6,6 @@ app.config(function ($stateProvider) {
         controller: 'AnswerQuestionsController',
         resolve: {
             questions: function(QuestionFactory) {
-                // Returns first 20 questions
                 return QuestionFactory.getAllQuestions();
             }
         },
@@ -19,9 +18,10 @@ app.config(function ($stateProvider) {
 
 app.controller('AnswerQuestionsController', function ($scope, questions) {
 
-    $scope.questions = questions;
+    $scope.currentQuestionNum = 0;
 
-    // Get more questions
-
+    // $scope.saveAnswer = function() {
+    //     AnswerFactory.saveAnswer($scope.answer)
+    // }
 
 });

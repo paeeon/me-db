@@ -38,12 +38,13 @@ navbar {
     border: 1px solid black;
     background: none;
     outline: none !important;
+    margin: auto 4px;
   }
   .welcome {
     float: right;
     margin-top: 12px;
     span {
-      color: darken($cobalt, 30%);
+      color: darken($cobalt, 40%);
       font-size: 16px;
       margin-right: 5px;
     }
