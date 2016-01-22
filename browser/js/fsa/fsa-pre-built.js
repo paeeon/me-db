@@ -57,6 +57,13 @@
             return data.user;
         }
 
+        function onSuccessfulSignup(response) {
+            var user = response.data;
+            Session.create(user._id, user);
+            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+            return user;
+        }
+
         // Uses the session factory to see if an
         // authenticated user is currently registered.
         this.isAuthenticated = function () {
@@ -93,6 +100,17 @@
                     return $q.reject({ message: 'Invalid login credentials.' });
                 });
         };
+
+        this.signup = function (credential) {
+            return $http.post('/signup', credential)
+                .then(function(user){
+                    return user;
+                })
+                .then(onSuccessfulSignup)
+                .catch(function(){
+                    return $q.reject({message: "Unable to signup."})
+                })
+        }
 
         this.logout = function () {
             return $http.get('/logout').then(function () {
