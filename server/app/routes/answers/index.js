@@ -21,3 +21,10 @@ router.get('/', function(req, res, next) {
         }).then(null, next);
 });
 
+router.get('/:id', function(req, res, next) {
+	Answer.find({user: req.params.id})
+	.then(function(answers){
+		res.status(200).send(answers)
+	})
+	.then(null,next)
+})
