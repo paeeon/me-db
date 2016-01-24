@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h3 class="modal-title">Add friends</h3>
+</div>
+<div class="modal-body">
+    <p ng-repeat="user in allUsers">{{ user }}</p>
+</div>
+<div class="modal-footer">
+  <button class="btn" type="button" ng-click="ok()">OK</button>
+  <button class="btn" type="button" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="dark text-center">
+        <h1>How well do you know your friends?</h1>
+        <h5>Take a quiz and find out!</h5>
+      </div>
+      <div class="huge-spacer"></div>
+    </div>
+  </div>
+
+  <div class="row quiz-friends">
+    <div class="col-lg-6 col-lg-offset-3">
+      <div class="ui segment inverted">
+        <div class="ui middle aligned divided list">
+          <div class="item" ng-repeat="user in users">
+            <div class="right floated content">
+              <div class="ui button" ui-sref="quiz({userId: user._id})">Play {{ user.firstName }}'s Quiz</div>
+            </div>
+            <img class="ui avatar image" src="http://www.gravatar.com/avatar/{{ user.gravatar }}">
+            <div class="content">
+              {{ user.firstName }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,25 @@
+@import '../variables';
+
+.quiz-friends {
+  .ui.list>.item>img.image+.content {
+    color: white;
+  }
+
+  .ui.divided.inverted.list>.item {
+    border-color: darken($lavender, 15%);
+  }
+
+  .ui.button {
+    width: 250px;
+    color: white;
+    background: lighten($dark-gray, 15%);
+    transition: background .2s;
+    &:hover {
+      background: lighten($dark-gray, 45%);
+    }
+  }
+
+  .ui.divided.list>.item {
+    border-top: 0px;
+  }
+}

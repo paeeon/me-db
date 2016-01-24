@@ -8,11 +8,12 @@ app.factory('AnswerFactory', function($http) {
     saveAnswer: function(answer) {
       return $http.post('/api/answers/', answer)
         .then(extractData)
-        .then(function(savedAnswer) {
-          console.log("This is the saved answer…");
-          console.log(savedAnswer);
-        })
-        .then(null, console.error)
+        .then(null, console.error);
+    },
+    getAnswersByUserWithQuestion: function(userId) {
+      return $http.get('/api/answers/' + userId + '?questions=true')
+        .then(extractData)
+        .then(null, console.error);
     }
   };
 

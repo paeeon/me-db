@@ -9,7 +9,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             scope.items = [
                 { label: 'Answer Questions', state: 'answerQuestions', auth: true },
                 { label: 'My DB', state: 'myDb', auth: true },
-                { label: 'Add a Question', state: 'askAQuestion', auth: true }
+                { label: 'Add a Question', state: 'askAQuestion', auth: true },
+                { label: 'Quizzes', state: 'quizList', auth: true }
             ];
 
             scope.user = null;
