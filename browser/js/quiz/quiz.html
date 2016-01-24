@@ -21,13 +21,16 @@
               </a>
             </div>
           </div>
-          <form name="questionAnswers" ng-submit="chooseAnswer()" class="ui form">
+          <form name="questionAnswers"  class="ui form">
             <div class="ui bottom attached large buttons two">
-              <button class="ui button">{{ answer }}</button>
-              <div class="or"></div>
-              <button class="ui button">{{ randomWrongAnswer }}</button>
+              <button ng-repeat='answer in answerArr' ng-click="submitAnswer(answer)" class="ui button">{{ answer.text }} </button>
             </div>
           </form>
+          <!-- <div class="ui bottom attached large buttons two">
+              <button class="ui button">{{ answer.text }}</button>
+              <div class="or"></div>
+              <button class="ui button">{{ randomWrongAnswer.text }}</button>
+            </div> -->
         </div>
       </div>
     </div>
