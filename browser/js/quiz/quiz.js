@@ -68,11 +68,23 @@ app.controller('QuizController', function($scope, loggedInUser, correctAnswers, 
     }).then(null, console.error);
 
     $scope.submitAnswer = function(answer) {
-      if (answer.correct) {
+      if ($scope.questionsAnswered >= $scope.totalNumOfQuestions) return;
+      else if (answer.correct) {
         $scope.answeredCorrectly ++;
       }
       $scope.questionsAnswered++;
-      $scope.score = $scope.answeredCorrectly + " / " + $scope.questionsAnswered;
+    }
+
+
+    $scope.correctProgressScore = function() {
+      var percent = Math.ceil(($scope.answeredCorrectly/$scope.totalNumOfQuestions)*100);
+      return percent;
+    }
+
+    $scope.incorrectProgressScore = function() {
+      var percent = Math.ceil(($scope.questionsAnswered - $scope.answeredCorrectly)/$scope.totalNumOfQuestions*100);
+      if ($scope.questionsAnswered < 1) return 0;
+      return percent;    
     }
 
 
