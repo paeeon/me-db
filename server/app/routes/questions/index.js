@@ -15,10 +15,10 @@ var ensureAuthenticated = function (req, res, next) {
 // Gets all (or some) questions
 // GET /api/questions/
 router.get('/', function(req, res, next) {
-    Question.find({}).exec()
-        .then(function(allQuestions) {
-            res.status(200).json(allQuestions);
-        }).then(null, next);
+  Question.find({}).exec()
+    .then(function(allQuestions) {
+        res.status(200).json(allQuestions);
+    }).then(null, next);
 });
 
 router.get('/:id', function(req, res, next) {

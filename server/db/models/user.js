@@ -2,6 +2,7 @@
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 var _ = require('lodash');
+var CryptoJS = require("crypto-js");
 
 var schema = new mongoose.Schema({
     email: {
@@ -11,7 +12,17 @@ var schema = new mongoose.Schema({
     firstName: {
         type: String
     },
+    lastName: {
+        type: String
+    },
     password: {
+        type: String
+    },
+    friends: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    gravatar: {
         type: String
     },
     salt: {
@@ -62,6 +73,14 @@ var encryptPassword = function (plainText, salt) {
     hash.update(salt);
     return hash.digest('hex');
 };
+
+// Method for generating Gravatar hash
+schema.pre('validate', function (next) {
+
+    this.gravatar = CryptoJS.MD5(this.email.trim().toLowerCase());
+    next();
+
+});
 
 schema.pre('save', function (next) {
 
