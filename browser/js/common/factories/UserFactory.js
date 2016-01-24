@@ -1,4 +1,5 @@
 app.factory('UserFactory', function($http) {
+
   var extractData = function(response) {
     return response.data;
   };

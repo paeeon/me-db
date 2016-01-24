@@ -6,8 +6,13 @@ app.config(function ($stateProvider) {
         controller: 'myDbController',
         resolve: {
             questions: function(QuestionFactory) {
-                // Returns first 20 questions
                 return QuestionFactory.getAllQuestions();
+            },
+            user: function(AuthService) {
+                if (AuthService.isAuthenticated) return AuthService.getLoggedInUser();
+            },
+            userAnswers: function(AnswerFactory, user) {
+                return AnswerFactory.getAnswersByUserWithQuestion(user._id);
             }
         },
         data: {
@@ -17,10 +22,12 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('myDbController', function ($scope, questions) {
+app.controller('myDbController', function ($scope, questions, user, userAnswers, AnswerFactory) {
 
+    console.log(user);
+    console.log(userAnswers);
     $scope.questions = questions;
-    // Get more questions
 
+    $scope.userAnswers = userAnswers;
 
 });

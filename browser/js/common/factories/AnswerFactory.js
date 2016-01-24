@@ -1,6 +1,7 @@
 app.factory('AnswerFactory', function($http) {
 
   var extractData = function(response) {
+    console.log(response);
     return response.data;
   };
 
