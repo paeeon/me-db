@@ -14,6 +14,11 @@ app.factory('AnswerFactory', function($http) {
       return $http.get('/api/answers/' + userId + '?questions=true')
         .then(extractData)
         .then(null, console.error);
+    },
+    getAnswersForQuestionExceptForThoseBy: function(questionId, userId) {
+      return $http.get('/api/answers/not/' + userId + '/question/' + questionId)
+        .then(extractData)
+        .then(null, console.error);
     }
   };
 

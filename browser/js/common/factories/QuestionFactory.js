@@ -9,6 +9,11 @@ app.factory('QuestionFactory', function($http) {
         .then(extractData)
         .then(null, console.error);
     },
+    getOneQuestion: function(questionId) {
+      return $http.get('/api/questions/' + questionId)
+        .then(extractData)
+        .then(null, console.error);
+    },
     getUnansweredQuestionsForUser: function(user, numQuestionsToReturn) {
       return $http.get('/api/user/' + user._id + '/questions/unanswered?limit=' + numQuestionsToReturn)
         .then(extractData)

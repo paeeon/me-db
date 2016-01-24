@@ -1,14 +1,11 @@
 @import '../variables';
-
 .quiz-friends {
   .ui.list>.item>img.image+.content {
     color: white;
   }
-
   .ui.divided.inverted.list>.item {
     border-color: darken($lavender, 15%);
   }
-
   .ui.button {
     width: 250px;
     color: white;
@@ -18,8 +15,42 @@
       background: lighten($dark-gray, 45%);
     }
   }
-
   .ui.divided.list>.item {
     border-top: 0px;
   }
+}
+
+h3.question-text {
+  color: $dark-purple;
+}
+
+.ui.segment.inverted {
+  &.top.attached {
+    border-color: $dark-gray;
+  }
+  p.question-text {
+    color: $bright-teal;
+    margin: 0 0 .5em;
+  }
+}
+
+.ui[class*="bottom attached"].buttons .button:first-child {
+  background: darken($lavender, 10%);
+  color: white;
+  &:hover {
+    background: darken($lavender, 5%);
+  }
+}
+
+.ui[class*="bottom attached"].buttons .button:last-child {
+  background: $indigo;
+  color: white;
+  &:hover {
+    background: lighten($indigo, 5%);
+  }
+}
+
+.ui.large.buttons .or:before {
+  color: $lavender;
+  background-color: $dark-gray;
 }

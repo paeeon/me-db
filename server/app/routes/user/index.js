@@ -14,6 +14,15 @@ var ensureAuthenticated = function(req, res, next) {
   }
 };
 
+// Get one user
+// GET /api/user/:userId
+router.get('/:userId', function(req, res, next) {
+  User.findById(req.params.userId)
+    .then(function(user) {
+      res.status(200).json(user);
+    }).then(null, next);
+});
+
 // Gets all of a specific user's friends
 // GET /api/user/:userId/friends
 router.get('/:userId/friends', function(req, res, next) {

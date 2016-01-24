@@ -4,6 +4,11 @@ app.factory('UserFactory', function($http) {
   };
 
   var fac = {
+    getOneUser: function(userId) {
+      return $http.get('/api/user/' + userId)
+        .then(extractData)
+        .then(null, console.error);
+    },
     getFriends: function(user) {
       return $http.get('/api/user/' + user._id + '/friends')
         .then(extractData)
