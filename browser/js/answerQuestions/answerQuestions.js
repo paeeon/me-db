@@ -24,6 +24,11 @@ app.controller('AnswerQuestionsController', function($scope, AnswerFactory, logg
   var questionElement = document.getElementById('question');
   $scope.currentQuestionNum = 0;
 
+  // If the user has answered all the questions
+  if (!questions || questions.length === 0) {
+    $scope.allQuestionsAnswered = true;
+  }
+
   $scope.questionNum = questions.length;
   $scope.question = questions[$scope.currentQuestionNum];
 
