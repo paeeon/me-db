@@ -20,3 +20,11 @@ router.get('/', function(req, res, next) {
             res.status(200).json(allQuestions);
         }).then(null, next);
 });
+
+router.get('/:id', function(req, res, next) {
+	Question.find({_id: req.params.id})
+	.then(function(questions){
+		res.status(200).send(questions);
+	})
+	.then(null, next)
+})

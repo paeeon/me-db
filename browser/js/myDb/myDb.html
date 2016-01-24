@@ -1,7 +1,8 @@
-<div class='container'>
+<div class='container' id='my-db'>
 	<div class='spacer'></div>
-		<div ng-repeat='question in questions'>
-			{{question.text}}
+		<div class='answer-container' ng-repeat='answer in userAnswers'>
+			<h1>{{answer.question.text}}</h1>
+			<h2>Your answer: {{answer.text}}</h2>
 		</div>
 	<div class='spacer'></div>
 </div>

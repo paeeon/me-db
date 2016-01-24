@@ -11,6 +11,9 @@ app.config(function ($stateProvider) {
             },
             userId: function(AuthService) {
                 return AuthService.getLoggedInUser();
+            },
+            userAnswersWithQuestions: function(AnswerFactory, userId) {
+                return AnswerFactory.getUserAnswersWithQuestions(userId._id);
             }
         },
         data: {
@@ -20,15 +23,13 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('myDbController', function ($scope, questions, userId) {
+app.controller('myDbController', function ($scope, questions, userId, userAnswersWithQuestions, AnswerFactory) {
 
     $scope.questions = questions;
 
-    console.log(userId._id);
+    console.log(userAnswersWithQuestions);
 
-    $scope.usersQuestions;
-
-
+    $scope.userAnswers = userAnswersWithQuestions;
 
     // Get more questions
 

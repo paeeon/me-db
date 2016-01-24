@@ -12,19 +12,29 @@ var ensureAuthenticated = function (req, res, next) {
     }
 };
 
-// Gets all (or some) questions
-// GET /api/questions/
-router.get('/', function(req, res, next) {
-    Answer.find({}).exec()
-        .then(function(allQuestions) {
-            res.status(200).send(allQuestions);
-        }).then(null, next);
-});
-
 router.get('/:id', function(req, res, next) {
-	Answer.find({user: req.params.id})
+	Answer.find({"user": req.params.id})
+	.populate('question')
 	.then(function(answers){
-		res.status(200).send(answers)
+		res.status(200).send(answers);
 	})
-	.then(null,next)
+	.then(null, next)
 })
+
+router.get('/', function(req, res, next) {
+	Answer.find({}).exec()
+	.then(function(answers){
+		res.status(200).send(answers);
+	})
+	.then(null, next)
+})
+
+// Adds an answer
+// POST /api/answers
+router.post('/', function(req, res, next) {
+  Answer.create(req.body)
+    .then(function(answer) {
+      console.log(answer);
+      res.status(201).json(answer);
+    }).then(null, next);
+});
