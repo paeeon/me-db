@@ -14,6 +14,11 @@ app.factory('QuestionFactory', function($http) {
             return $http.get('/api/questions/')
                 .then(extractData)
                 .then(null, console.error);
+        },
+        getQuestionsById: function(id){
+            return $http.get('/api/questions/' + id)
+            .then(extractData)
+            .then(null, console.error)
         }
     };
 

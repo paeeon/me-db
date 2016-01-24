@@ -34,7 +34,6 @@ app.controller('AnswerQuestionsController', function($scope, questions, AnswerFa
   $scope.progressBarValue = resetProgressBarValue();
 
   $scope.saveAnswer = function() {
-
     // Adds some other properties to $scope.answer so that the object also has the
     // user._id and question._id reference
     $scope.answer.user = loggedInUser._id;
