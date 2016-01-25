@@ -27,11 +27,6 @@ var seedQuestions = function () {
 
     var questions = [
         {
-            text: 'What scares you?',
-            category: 'personal',
-            approved: true
-        },
-        {
             text: 'Coffee or tea?',
             category: 'taste',
             approved: true
@@ -42,18 +37,18 @@ var seedQuestions = function () {
             approved: true
         },
         {
-            text: 'Are you religious?',
-            category: 'personal',
-            approved: true
-        },
-        {
             text: "Do your feet smell?",
             category: 'curveball',
             approved: true
         },
         {
-            text: 'Do you like answering questions?',
-            category: 'curveball',
+            text: 'Are you religious?',
+            category: 'personal',
+            approved: true
+        },
+        {
+            text: 'What scares you?',
+            category: 'personal',
             approved: true
         },
         {
@@ -62,8 +57,13 @@ var seedQuestions = function () {
             approved: true
         },
         {
-            text: "What's your favorite color?",
-            category: 'taste',
+            text: "In what ways are you the same as your childhood self?",
+            category: 'personal',
+            approved: true
+        },
+        {
+            text: "If you had to give up one of your 5 senses, which would it be?",
+            category: 'personal',
             approved: true
         },
         {
@@ -77,8 +77,13 @@ var seedQuestions = function () {
             approved: true
         },
         {
-            text: "What's the craziest thing you've ever done?",
+            text: "If you could live for eternity, would you and you?",
             category: 'personal',
+            approved: true
+        },
+        {
+            text: 'Do you like answering questions?',
+            category: 'curveball',
             approved: true
         },
         {
@@ -102,13 +107,23 @@ var seedQuestions = function () {
             approved: true
         },
         {
+            text: 'What is God?',
+            category: 'child',
+            approved: true
+        },
+        {
+            text: 'What single message would you send to an advanced alien species?',
+            category: 'random',
+            approved: true
+        },
+        {
             text: "Why don't we want others to see our private parts?",
             category: 'child',
             approved: true
         },
         {
-            text: "Why are there so many languages in the world?",
-            category: 'child',
+            text: 'If you could take only three personal items to a deserted island, what would you choose?',
+            category: 'personal',
             approved: true
         },
         {
@@ -117,22 +132,7 @@ var seedQuestions = function () {
             approved: true
         },
         {
-            text: "Where do babies come from?",
-            category: 'child',
-            approved: true
-        },
-        {
-            text: 'What is God?',
-            category: 'child',
-            approved: true
-        },
-        {
-            text: 'Where do you come from?',
-            category: 'child',
-            approved: true
-        },
-        {
-            text: 'Do you identify with your heritage?',
+            text: "Describe a recurring dream that you have had at any period in your life?",
             category: "personal",
             approved: true
         }
