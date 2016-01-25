@@ -77,7 +77,7 @@ var seedQuestions = function () {
             approved: true
         },
         {
-            text: "If you could live for eternity, would you and you?",
+            text: "If you could live for eternity, would you?",
             category: 'personal',
             approved: true
         },
