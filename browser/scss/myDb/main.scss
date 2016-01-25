@@ -8,4 +8,24 @@
 			margin: 0 auto
 		}
 	}
+  h2.ui.header {
+    color: white;
+    margin-bottom: 15px;
+  }
+  h2.ui.sub.header {
+    color: $lavender;
+    margin-bottom: 0;
+  }
+  p.ui {
+    color: white;
+    margin-top: 5px;
+  }
+  hr {
+    border: 0;
+    height: 2px;
+    margin-top: 8px;
+    margin-bottom: 18px;
+    background: lighten($indigo, 10%);
+    width: 100px;
+  }
 }

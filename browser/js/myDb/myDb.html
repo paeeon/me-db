@@ -1,9 +1,15 @@
-<div class='container' id='my-db'>
-	<div class='spacer'></div>
-		<div class='answer-container' ng-repeat='answer in userAnswers'>
-			<h1>{{answer.question.text}}</h1>
-			<h2>Your answer: {{answer.text}}</h2>
-		</div>
-	<div class='spacer'></div>
+<div class="container" id='my-db'>
+  <div class='spacer'></div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2">
+      <div class='answer-container clearfix' ng-repeat='answer in userAnswers'>
+        <h2 class="ui header">{{answer.question.text}}</h2>
+        <h2 class="ui sub header">
+          Your Answer
+        </h2>
+        <p class="ui">{{answer.text}}</p>
+        <hr class="pull-left">
+      </div>
+    </div>
+  </div>
 </div>
-

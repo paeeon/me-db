@@ -12,15 +12,6 @@ var ensureAuthenticated = function (req, res, next) {
     }
 };
 
-router.get('/:id', function(req, res, next) {
-	Answer.find({"user": req.params.id})
-	.populate('question')
-	.then(function(answers){
-		res.status(200).send(answers);
-	})
-	.then(null, next)
-})
-
 router.get('/', function(req, res, next) {
 	Answer.find({}).exec()
 	.then(function(answers){
@@ -39,13 +30,21 @@ router.post('/', function(req, res, next) {
     }).then(null, next);
 });
 
-// Gets answers by user
+// Gets answers by user, with questions populated
 // GET /api/answers/:userId
 router.get('/:userId', function(req, res, next) {
-  if (req.query && req.query.questions === 'true') {
-    Answer.find({ user: req.params.userId }).populate('question')
+
+  if (req.query && req.query.questions === 'true' && req.query.limit) {
+    Answer.find({ user: req.params.userId })
+    .populate('question')
       .then(function(answers) {
-        console.log(answers);
+        res.status(200).json(answers);
+      }).then(null, next);
+  } else if (req.query && req.query.questions === 'true') {
+    Answer.find({ user: req.params.userId })
+    .limit(parseInt(req.query.limit))
+    .populate('question')
+      .then(function(answers) {
         res.status(200).json(answers);
       }).then(null, next);
   } else {

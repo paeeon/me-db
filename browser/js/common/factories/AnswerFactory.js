@@ -1,7 +1,6 @@
 app.factory('AnswerFactory', function($http) {
 
   var extractData = function(response) {
-    console.log(response);
     return response.data;
   };
 
@@ -11,10 +10,16 @@ app.factory('AnswerFactory', function($http) {
         .then(extractData)
         .then(null, console.error);
     },
-    getAnswersByUserWithQuestion: function(userId) {
-      return $http.get('/api/answers/' + userId + '?questions=true')
-        .then(extractData)
-        .then(null, console.error);
+    getAnswersByUserWithQuestion: function(userId, numAnswersToRetrieve) {
+      if (numAnswersToRetrieve) {
+        return $http.get('/api/answers/' + userId + '?questions=true&limit=' + numAnswersToRetrieve.toString())
+          .then(extractData)
+          .then(null, console.error);
+      } else {
+        return $http.get('/api/answers/' + userId + '?questions=true')
+          .then(extractData)
+          .then(null, console.error);
+      }
     },
     getAnswersForQuestionExceptForThoseBy: function(questionId, userId) {
       return $http.get('/api/answers/not/' + userId + '/question/' + questionId)

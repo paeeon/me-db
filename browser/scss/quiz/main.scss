@@ -54,3 +54,28 @@ h3.question-text {
   color: $lavender;
   background-color: $dark-gray;
 }
+
+#quiz-question {
+  .padded {
+    padding-top: 15px;
+  }
+}
+
+.quiz-complete {
+  .header {
+    color: $dark-purple;
+  }
+
+  .ui.icon.header .icon {
+    color: $bright-teal;
+  }
+  .ui.center.aligned.header, .ui.centered.header {
+    color: $bright-teal;
+  }
+}
+
+.scorecard {
+  h1 {
+    color: white;
+  }
+}

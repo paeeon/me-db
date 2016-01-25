@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
         if (AuthService.isAuthenticated) return AuthService.getLoggedInUser();
       },
       usersExceptMyself: function(UserFactory, loggedInUser) {
-        return UserFactory.getAllUsersExceptMyself(loggedInUser);
+        return UserFactory.getAllUsersExceptMyself(loggedInUser._id);
       }
     }
   });
