@@ -25,6 +25,23 @@ app.factory('AnswerFactory', function($http) {
       return $http.get('/api/answers/not/' + userId + '/question/' + questionId)
         .then(extractData)
         .then(null, console.error);
+    },
+    getAnswersByUserForOnlyTheseQuestions: function(userId, questionIdsArray) {
+      // var stringToAppendToRoute = questionIdsArray.reduce(function(snowball, curr) {
+      //   return ""
+      // }, "");
+      console.log("USER ID");
+      console.log(userId);
+      var arrOfPromises = questionIdsArray.map(function(questionId) {
+        return $http.get('/api/answers/' + userId + '/question/' + questionId);
+      });
+      return Promise.all(arrOfPromises)
+        .then(function(responses) {
+          return responses.map(function(response) {
+            return response.data;
+          })
+        })
+        .then(null, console.error);
     }
   };
 

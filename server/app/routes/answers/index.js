@@ -30,6 +30,17 @@ router.post('/', function(req, res, next) {
     }).then(null, next);
 });
 
+// $http.get('/api/answers/' + userId + '/question/' + questionId)
+router.get('/:userId/question/:questionId', function(req, res, next) {
+  Answer.findOne({
+    user: { $eq: req.params.userId },
+    question: { $eq: req.params.questionId }
+  }).then(function(answer) {
+    console.log(answer);
+    res.status(200).json(answer);
+  }).then(null, next);
+});
+
 // Gets answers by user, with questions populated
 // GET /api/answers/:userId
 router.get('/:userId', function(req, res, next) {
