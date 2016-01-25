@@ -65,6 +65,7 @@ app.controller('AnswerQuestionsController', function($scope, AnswerFactory, logg
           $scope.question = questions[$scope.currentQuestionNum];
         }
       }).then(function(newQuestionsPotentially) {
+        // Have to do a check here to see if the newQuestionsPotentially is an empty (array)?
         if (newQuestionsPotentially) $scope.question = questions[$scope.currentQuestionNum];
         return $animate.setClass(questionElement, 'fadeInRight', 'fadeOutLeft');
       }).then(null, console.error)

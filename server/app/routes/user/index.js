@@ -14,9 +14,21 @@ var ensureAuthenticated = function(req, res, next) {
   }
 };
 
+// Gets all users but NOT myself
+// GET /api/user/not/:userId
+router.get('/not/:userId/', function(req, res, next) {
+  User.find({ _id: { $ne: req.params.userId } })
+    .then(function(users) {
+      res.status(200).json(users);
+    }).then(null, next);
+});
+
 // Get one user
 // GET /api/user/:userId
 router.get('/:userId', function(req, res, next) {
+  console.log("the userid", req.params.userId);
+  // if (req.params.userId === 'all') console.log("THE USER ID IS ALL");
+  // next();
   User.findById(req.params.userId)
     .then(function(user) {
       res.status(200).json(user);
@@ -36,15 +48,6 @@ router.get('/:userId/friends', function(req, res, next) {
 // GET /api/user/
 router.get('/', function(req, res, next) {
   User.find({})
-    .then(function(users) {
-      res.status(200).json(users);
-    }).then(null, next);
-});
-
-// Gets all users but NOT myself
-// GET /api/user/not/:userId
-router.get('/not/:userId/', function(req, res, next) {
-  User.find({ _id: { $ne: req.params.userId } })
     .then(function(users) {
       res.status(200).json(users);
     }).then(null, next);

@@ -1,7 +1,6 @@
 app.factory('AnswerFactory', function($http) {
 
   var extractData = function(response) {
-    console.log(response);
     return response.data;
   };
 
@@ -11,8 +10,8 @@ app.factory('AnswerFactory', function($http) {
         .then(extractData)
         .then(null, console.error);
     },
-    getAnswersByUserWithQuestion: function(userId) {
-      return $http.get('/api/answers/' + userId + '?questions=true')
+    getAnswersByUserWithQuestion: function(userId, numAnswersToRetrieve) {
+      return $http.get('/api/answers/' + userId + '?questions=true&limit=' + numAnswersToRetrieve.toString())
         .then(extractData)
         .then(null, console.error);
     },

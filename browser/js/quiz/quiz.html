@@ -4,13 +4,38 @@
       <h2 class="ui sub header inverted">
         Your score so far…
       </h2>
-      <h3>{{ score }}</h3>
+      <div class="scorecard">
+        {{ answeredCorrectly }} / {{ questionsAnswered }}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="allQuestionsAnswered">
+    <div class="ui basic modal quiz-complete">
+      <div class="header text-center">Quiz Complete!</div>
+      <div class="content">
+        <h2 class="ui center aligned icon header">
+          <i class="circular trophy icon"></i>
+          Your score is {{ score | percentage:0 }}!
+        </h2>
+        <div class="big-spacer"></div>
+        <p class="ui text-center" ng-show="score >= 0.9">That's amazing! Even {{ subjectOfQuiz.firstName }} would be impressed! </p>
+        <p class="ui text-center" ng-show="score >= 0.7 && score < 0.9">Not bad! You seem to know {{ subjectOfQuiz.firstName }} pretty darn well. </p>
+        <p class="ui text-center" ng-show="score >= 0.4 && score < 0.7">Hey, it could have been worse, right? </p>
+        <p class="ui text-center" ng-show="score < 0.4">Ouch... Do you even know who {{ subjectOfQuiz.firstName }} is? </p>
+      </div>
+      <div class="actions">
+        <div class="ui inverted right floated buttons">
+          <div class="ui teal basic inverted button" ui-sref="quizList">
+            <i class="angle left icon"></i> Back to Quizzes
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row" ng-hide="allQuestionsAnswered">
     <div class="col-md-offset-2 col-md-8">
-      <div id="question" class="question clearfix animated" ng-hide="transitioning">
-        <uib-progressbar max="100" value="progressBarValue"></uib-progressbar>
+      <div id="quiz-question" class="question clearfix animated" ng-hide="transitioning">
+        <!-- <uib-progressbar max="100" value="progressBarValue"></uib-progressbar> -->
         <div class="padded">
           <h2 class="question-text">Which answer do you think {{ subjectOfQuiz.firstName }} {{ subjectOfQuiz.lastName }} chose for this question?</h2>
           <div class="ui segment inverted clearfix top attached">
@@ -21,7 +46,7 @@
               </a>
             </div>
           </div>
-          <form name="questionAnswers"  class="ui form">
+          <form name="questionAnswers" class="ui form">
             <div class="ui bottom attached large buttons two">
               <button ng-repeat='answer in answerArr' ng-click="submitAnswer(answer)" class="ui button">{{ answer.text }} </button>
             </div>

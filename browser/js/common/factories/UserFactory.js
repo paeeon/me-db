@@ -18,13 +18,10 @@ app.factory('UserFactory', function($http) {
     getAllUsers: function() {
       return $http.get('/api/user/')
         .then(extractData)
-        .then(function(users) {
-          console.log(users);
-        })
         .then(null, console.error);
     },
-    getAllUsersExceptMyself: function(user) {
-      return $http.get('/api/user/not/' + user._id)
+    getAllUsersExceptMyself: function(userId) {
+      return $http.get('/api/user/not/' + userId)
         .then(extractData)
         .then(null, console.error);
     }
