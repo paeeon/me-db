@@ -47,7 +47,7 @@
         <div class="ui middle aligned divided list">
           <div class="item" ng-repeat="user in users">
             <div class="right floated content">
-              <div class="ui button" ui-sref="quiz({userId: user._id})">Play {{ user.firstName }}'s Quiz</div>
+              <div class="ui button" ng-click="chooseOther(user)">Play {{ user.firstName }}'s Quiz</div>
             </div>
             <img class="ui avatar image" src="http://www.gravatar.com/avatar/{{ user.gravatar }}">
             <div class="content">

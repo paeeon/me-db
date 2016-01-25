@@ -14,7 +14,7 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('QuizListController', function($scope, usersExceptMyself, $uibModal, $log, $document) {
+app.controller('QuizListController', function($scope, usersExceptMyself, $state) {
 
   $scope.users = usersExceptMyself;
   $scope.isCollapsed = true;
