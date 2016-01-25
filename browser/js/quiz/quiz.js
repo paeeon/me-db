@@ -1,6 +1,6 @@
 app.config(function($stateProvider) {
   $stateProvider.state('quiz', {
-    url: '/quiz/user/:userId',
+    url: '/quiz/subject/:subjectUserId/other/:otherUserId',
     templateUrl: 'js/quiz/quiz.html',
     controller: 'QuizController',
     resolve: {
@@ -8,34 +8,40 @@ app.config(function($stateProvider) {
         if (AuthService.isAuthenticated) return AuthService.getLoggedInUser();
       },
       subjectOfQuiz: function($stateParams, UserFactory) {
-        return UserFactory.getOneUser($stateParams.userId);
+        return UserFactory.getOneUser($stateParams.subjectUserId);
       },
+
       correctAnswers: function($stateParams, AnswerFactory) {
-        return AnswerFactory.getAnswersByUserWithQuestion($stateParams.userId, 5)
+        return AnswerFactory.getAnswersByUserWithQuestion($stateParams.subjectUserId, 5)
           .then(function(answers) {
             return answers.map(function(el) {
               el.correct = true;
               return el;
             })
           }).then(null, console.error);
+      },
+      wrongAnswers: function($stateParams, AnswerFactory, correctAnswers) {
+        var questionIds = correctAnswers.map(function(answer) {
+          return answer.question._id;
+        });
+        console.log($stateParams.otherUserId);
+        return AnswerFactory.getAnswersByUserForOnlyTheseQuestions($stateParams.otherUserId, questionIds);
+        // return AnswerFactory.getAnswersByUserWithQuestion($stateParams.otherUserId, 5)
+        //   .then(function(answers) {
+        //     return answers.map(function(el) {
+        //       el.correct = false;
+        //       return el;
+        //     })
+        //   }).then(null, console.error);
       }
     }
   });
 });
 
-app.controller('QuizController', function($scope, loggedInUser, correctAnswers, $stateParams, AnswerFactory, subjectOfQuiz, $state, $animate) {
+app.controller('QuizController', function($scope, loggedInUser, correctAnswers, wrongAnswers, $stateParams, AnswerFactory, subjectOfQuiz, $state, $animate) {
 
-  var questionElement = document.getElementById('quiz-question');
-  $scope.subjectOfQuiz = subjectOfQuiz;
-  $scope.answeredCorrectly = 0;
-  $scope.questionsAnswered = 0;
-  $scope.totalNumOfQuestions = correctAnswers.length - 1;
-
-  $scope.question = correctAnswers[$scope.questionsAnswered].question;
-  $scope.answer = correctAnswers[$scope.questionsAnswered];
-
-  //array to store list of answers before randomizing
-  $scope.answerArr = [$scope.answer];
+  console.log("wrongAnswers");
+  console.log(wrongAnswers);
 
   //method for shuffling answers
   var shuffle = function(array) {
@@ -58,16 +64,22 @@ app.controller('QuizController', function($scope, loggedInUser, correctAnswers, 
     return array;
   }
 
-  AnswerFactory.getAnswersForQuestionExceptForThoseBy(correctAnswers[$scope.questionsAnswered].question._id, $stateParams.userId)
-    .then(function(wrongAnswers) {
-      $scope.randomWrongAnswer = wrongAnswers[Math.floor(Math.random() * wrongAnswers.length)];
-      $scope.answerArr.push($scope.randomWrongAnswer);
-      //shuffle array of answers
-      shuffle($scope.answerArr);
-    }).then(null, console.error);
+  var questionElement = document.getElementById('quiz-question');
+  $scope.subjectOfQuiz = subjectOfQuiz;
+  $scope.answeredCorrectly = 0;
+  $scope.questionsAnswered = 0;
+  $scope.totalNumOfQuestions = correctAnswers.length - 1;
+
+  $scope.question = correctAnswers[$scope.questionsAnswered].question;
+  $scope.answer = correctAnswers[$scope.questionsAnswered];
+  $scope.wrongAnswer = wrongAnswers[$scope.questionsAnswered];
+
+  //array to store list of answers before randomizing
+  $scope.answerArr = [$scope.answer, $scope.wrongAnswer];
+  shuffle($scope.answerArr);
 
   $scope.backToQuizzes = function() {
-    $('.basic.modal').modal('close');
+    $('.basic.modal').modal('hide');
     $state.go('quizList');
   };
 
@@ -96,28 +108,22 @@ app.controller('QuizController', function($scope, loggedInUser, correctAnswers, 
 
           // Change the answers we're showing
           $scope.answer = correctAnswers[$scope.questionsAnswered];
+          $scope.wrongAnswer = wrongAnswers[$scope.questionsAnswered];
 
           // Change the score
           $scope.score = $scope.answeredCorrectly / $scope.totalNumOfQuestions;
 
           //array to store list of answers before randomizing
-          $scope.answerArr = [$scope.answer];
+          $scope.answerArr = [$scope.answer, $scope.wrongAnswer];
 
-          return AnswerFactory.getAnswersForQuestionExceptForThoseBy(correctAnswers[$scope.questionsAnswered].question._id, $stateParams.userId)
-        }
-      }).then(function(answersForNextQuestion) {
-        // Check if answersForNextQuestion exists and is not empty.
-        // (It could be empty if the user has already finished the quiz)
-        if (answersForNextQuestion && answersForNextQuestion.length > 0) {
-          $scope.randomWrongAnswer = answersForNextQuestion[Math.floor(Math.random() * answersForNextQuestion.length)];
-          $scope.answerArr.push($scope.randomWrongAnswer);
           console.log("scope.answerArr…");
           console.log($scope.answerArr);
           //shuffle array of answers
           shuffle($scope.answerArr);
           return $animate.setClass(questionElement, 'fadeInRight', 'fadeOutLeft');
         }
-      }).then(null, console.error);
+
+        }).then(null, console.error);
 
   };
 
