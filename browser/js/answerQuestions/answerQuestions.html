@@ -1,11 +1,12 @@
 <div class="container">
+  <div class="big-spacer"></div>
   <div class="row" ng-show="allQuestionsAnswered">
     <div class="col-md-offset-2 col-md-8">
-      <h1>You've answered all our questions!</h1>
-      <h6>Wow, that's impressive! Come back soon for more! </h6>
+      <h1 class="ui header inverted text-center">You've answered all our questions!</h1>
+      <h6 class="ui header inverted text-center">Wow, that's impressive! Come back soon for more! </h6s>
     </div>
   </div>
-  <div class="row" ng-hide="allQuestionsAnswered">
+  <div class="row" ng-show="!allQuestionsAnswered">
     <div class="col-md-offset-2 col-md-8">
       <div id="question" class="question clearfix animated" ng-hide="transitioning">
         <uib-progressbar max="100" value="progressBarValue"></uib-progressbar>

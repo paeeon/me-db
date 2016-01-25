@@ -21,6 +21,12 @@ app.config(function($stateProvider) {
 
 app.controller('AnswerQuestionsController', function($scope, AnswerFactory, loggedInUser, questions, $animate, QuestionFactory) {
 
+  if (questions.length === 0) {
+    $scope.allQuestionsAnswered = true;
+  } else {
+    $scope.allQuestionsAnswered = false;
+  }
+
   var questionElement = document.getElementById('question');
   $scope.currentQuestionNum = 0;
 
@@ -53,20 +59,28 @@ app.controller('AnswerQuestionsController', function($scope, AnswerFactory, logg
         if ($scope.currentQuestionNum === $scope.questionNum) {
           // …If we're at the last question in the set of available questions
           // currently on the scope…
-            // Get more questions!
-            $scope.currentQuestionNum = 0;
-            return QuestionFactory.getUnansweredQuestionsForUser(loggedInUser, 15);
+          // Get more questions!
+          $scope.currentQuestionNum = 0;
+          return QuestionFactory.getUnansweredQuestionsForUser(loggedInUser, 15);
         } else {
           // …If we're NOT at the last question…
-            // Increment current question number, so that we know to display a different
-            // question to the user
+          // Increment current question number, so that we know to display a different
+          // question to the user
           $scope.currentQuestionNum++;
           $scope.progressBarValue = resetProgressBarValue();
           $scope.question = questions[$scope.currentQuestionNum];
         }
       }).then(function(newQuestionsPotentially) {
         // Have to do a check here to see if the newQuestionsPotentially is an empty (array)?
-        if (newQuestionsPotentially) $scope.question = questions[$scope.currentQuestionNum];
+        console.log(newQuestionsPotentially);
+        if (newQuestionsPotentially && newQuestionsPotentially.length === 0) {
+          $scope.allQuestionsAnswered = true;
+        } else if (newQuestionsPotentially && newQuestionsPotentially.length > 0) {
+          questions = newQuestionsPotentially;
+          $scope.question = questions[$scope.currentQuestionNum];
+        } else {
+          $scope.question = questions[$scope.currentQuestionNum];
+        }
         return $animate.setClass(questionElement, 'fadeInRight', 'fadeOutLeft');
       }).then(null, console.error)
   };

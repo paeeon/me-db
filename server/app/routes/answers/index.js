@@ -33,9 +33,14 @@ router.post('/', function(req, res, next) {
 // Gets answers by user, with questions populated
 // GET /api/answers/:userId
 router.get('/:userId', function(req, res, next) {
-  console.log("DUDE WHERE'S MY CAR");
 
-  if (req.query && req.query.questions === 'true') {
+  if (req.query && req.query.questions === 'true' && req.query.limit) {
+    Answer.find({ user: req.params.userId })
+    .populate('question')
+      .then(function(answers) {
+        res.status(200).json(answers);
+      }).then(null, next);
+  } else if (req.query && req.query.questions === 'true') {
     Answer.find({ user: req.params.userId })
     .limit(parseInt(req.query.limit))
     .populate('question')

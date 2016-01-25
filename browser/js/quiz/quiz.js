@@ -66,6 +66,11 @@ app.controller('QuizController', function($scope, loggedInUser, correctAnswers, 
       shuffle($scope.answerArr);
     }).then(null, console.error);
 
+  $scope.backToQuizzes = function() {
+    $('.basic.modal').modal('close');
+    $state.go('quizList');
+  };
+
   $scope.submitAnswer = function(answer) {
 
     $animate.addClass(questionElement, 'fadeOutLeft')
@@ -76,7 +81,7 @@ app.controller('QuizController', function($scope, loggedInUser, correctAnswers, 
         if ($scope.questionsAnswered === $scope.totalNumOfQuestions) {
           // …If we're at the last question in the set of available questions
           // currently on the scope, the quiz is finished!
-          $('.basic.modal').modal('setting', 'closable', false).modal('show');
+          $('.basic.modal').modal('show');
         } else {
           // …If we're NOT at the last question…
 
@@ -116,5 +121,15 @@ app.controller('QuizController', function($scope, loggedInUser, correctAnswers, 
 
   };
 
+  $scope.correctProgressScore = function() {
+    var percent = Math.ceil(($scope.answeredCorrectly / ($scope.totalNumOfQuestions + 1)) * 100);
+    return percent;
+  }
+
+  $scope.incorrectProgressScore = function() {
+    var percent = Math.ceil(($scope.questionsAnswered - $scope.answeredCorrectly) / ($scope.totalNumOfQuestions + 1) * 100);
+    if ($scope.questionsAnswered < 1) return 0;
+    return percent;
+  }
 
 });

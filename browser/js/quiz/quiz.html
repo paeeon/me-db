@@ -1,14 +1,5 @@
 <div class="container">
-  <div class="row">
-    <div class="text-center">
-      <h2 class="ui sub header inverted">
-        Your score so far…
-      </h2>
-      <div class="scorecard">
-        {{ answeredCorrectly }} / {{ questionsAnswered }}
-      </div>
-    </div>
-  </div>
+  <div class="big-spacer"></div>
   <div class="row" ng-show="allQuestionsAnswered">
     <div class="ui basic modal quiz-complete">
       <div class="header text-center">Quiz Complete!</div>
@@ -25,7 +16,7 @@
       </div>
       <div class="actions">
         <div class="ui inverted right floated buttons">
-          <div class="ui teal basic inverted button" ui-sref="quizList">
+          <div class="ui teal basic inverted button" ng-click="backToQuizzes()">
             <i class="angle left icon"></i> Back to Quizzes
           </div>
         </div>
@@ -35,7 +26,14 @@
   <div class="row" ng-hide="allQuestionsAnswered">
     <div class="col-md-offset-2 col-md-8">
       <div id="quiz-question" class="question clearfix animated" ng-hide="transitioning">
-        <!-- <uib-progressbar max="100" value="progressBarValue"></uib-progressbar> -->
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" style="background: #5CB85C" ng-style="{width : ( correctProgressScore() + '%' )}">
+            <span class="sr-only"></span>
+          </div>
+          <div class="progress-bar progress-bar-danger" style="background: #D9534F" ng-style="{width : ( incorrectProgressScore() + '%' )}">
+            <span class="sr-only"></span>
+          </div>
+        </div>
         <div class="padded">
           <h2 class="question-text">Which answer do you think {{ subjectOfQuiz.firstName }} {{ subjectOfQuiz.lastName }} chose for this question?</h2>
           <div class="ui segment inverted clearfix top attached">
