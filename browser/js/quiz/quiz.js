@@ -11,7 +11,7 @@ app.config(function($stateProvider) {
         return UserFactory.getOneUser($stateParams.userId);
       },
       correctAnswers: function($stateParams, AnswerFactory) {
-        return AnswerFactory.getAnswersByUserWithQuestion($stateParams.userId, 5)
+        return AnswerFactory.getAnswersByUserWithQuestion($stateParams.subjectUserId, 8)
           .then(function(answers) {
             return answers.map(function(el) {
               el.correct = true;
@@ -67,7 +67,7 @@ app.controller('QuizController', function($scope, loggedInUser, correctAnswers, 
     }).then(null, console.error);
 
   $scope.backToQuizzes = function() {
-    $('.basic.modal').modal('close');
+    $('.basic.modal.quiz-complete').modal('hide');
     $state.go('quizList');
   };
 
@@ -81,7 +81,7 @@ app.controller('QuizController', function($scope, loggedInUser, correctAnswers, 
         if ($scope.questionsAnswered === $scope.totalNumOfQuestions) {
           // …If we're at the last question in the set of available questions
           // currently on the scope, the quiz is finished!
-          $('.basic.modal').modal('show');
+          $('.basic.modal.quiz-complete').modal('show');
         } else {
           // …If we're NOT at the last question…
 

@@ -19,26 +19,16 @@ app.controller('QuizListController', function($scope, usersExceptMyself, $uibMod
   $scope.users = usersExceptMyself;
   $scope.isCollapsed = true;
 
-  // Unfinished logic for adding friends... When/if we get to the friend logic
-  // if (friends && friends.length > 0) $scope.friends = friends;
+  $scope.chooseOther = function(user) {
+    $scope.selectedUser = user;
+    $('.ui.basic.modal.choose-other')
+      .modal('show');
+  };
 
-  // $scope.addFriend = function() {
-  //   var modalInstance = $uibModal.open({
-  //     animation: $scope.animationsEnabled,
-  //     templateUrl: 'js/friends/add-friend.html',
-  //     controller: 'AddFriendController',
-  //     resolve: {
-  //       allUsers: function(UserFactory) {
-  //         return UserFactory.getAllUsersThatAreNotMyself();
-  //       }
-  //     }
-  //   });
-
-  //   modalInstance.result.then(function (selectedItem) {
-  //     $scope.selected = selectedItem;
-  //   }, function () {
-  //     $log.info('Modal dismissed at: ' + new Date());
-  //   });
-  // };
+  $scope.playQuiz = function(subjectOfQuiz, otherUser) {
+    $('.ui.basic.modal.choose-other')
+      .modal('hide');
+    $state.go('quiz', {subjectUserId: subjectOfQuiz._id, otherUserId: otherUser._id});
+  };
 
 });
