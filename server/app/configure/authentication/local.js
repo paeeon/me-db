@@ -29,8 +29,7 @@ module.exports = function (app) {
     app.post('/signup', function(req, res, next) {
         User.findOrCreate(req.body)
         .then(function(newUser){
-            console.log(newUser)
-             res.status(201).send(newUser);
+            res.status(201).send(newUser);
         })
         .then(null, next);
     })

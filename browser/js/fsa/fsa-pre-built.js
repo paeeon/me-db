@@ -101,8 +101,8 @@
                 });
         };
 
-        this.signup = function (credential) {
-            return $http.post('/signup', credential)
+        this.signup = function (credentials) {
+            return $http.post('/signup', credentials)
                 .then(function(user){
                     return user;
                 })

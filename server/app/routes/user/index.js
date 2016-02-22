@@ -23,6 +23,26 @@ router.get('/not/:userId/', function(req, res, next) {
     }).then(null, next);
 });
 
+// Gets all of a specific user's POTENTIAL friends that match a query,
+// i.e. not themselves and not their friends
+// GET /api/user/:userId/friends/:query
+router.get('/:userId/friends/:query', function(req, res, next) {
+  // console.log("Here's the regex expression…");
+  // console.log('/' + req.params.query + '/i');
+  User.findById(req.params.userId)
+    .then(function(user) {
+      var regexifiedQuery = '/' + req.params.query + '/i';
+      return User.find({
+        _id: { $nin: user.friends },
+        firstName: { $regex: regexifiedQuery }
+      });
+    }).then(function(matchingUsers) {
+      console.log("Here are all the users that match the query…");
+      console.log(matchingUsers);
+      res.status(200).json(matchingUsers);
+    })
+});
+
 // Get one user
 // GET /api/user/:userId
 router.get('/:userId', function(req, res, next) {
@@ -39,8 +59,9 @@ router.get('/:userId', function(req, res, next) {
 // GET /api/user/:userId/friends
 router.get('/:userId/friends', function(req, res, next) {
   User.findById(req.params.userId).populate('friends')
-    .then(function(friends) {
-      res.status(200).json(friends);
+    .then(function(userWithFriends) {
+      console.log(userWithFriends);
+      res.status(200).json(userWithFriends);
     }).then(null, next);
 });
 

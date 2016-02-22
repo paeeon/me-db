@@ -10,8 +10,8 @@ app.factory('UserFactory', function($http) {
         .then(extractData)
         .then(null, console.error);
     },
-    getFriends: function(user) {
-      return $http.get('/api/user/' + user._id + '/friends')
+    getAllFriendsOf: function(userId) {
+      return $http.get('/api/user/' + userId + '/friends')
         .then(extractData)
         .then(null, console.error);
     },
@@ -22,6 +22,11 @@ app.factory('UserFactory', function($http) {
     },
     getAllUsersExceptMyself: function(userId) {
       return $http.get('/api/user/not/' + userId)
+        .then(extractData)
+        .then(null, console.error);
+    },
+    getAllPotentialFriendsThatMatchThisQuery: function(userId, query) {
+      return $http.get('/api/user/' + userId + '/friends/' + query)
         .then(extractData)
         .then(null, console.error);
     }

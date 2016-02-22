@@ -15,6 +15,9 @@ var schema = new mongoose.Schema({
     lastName: {
         type: String
     },
+    fullName: {
+        type: String
+    },
     password: {
         type: String
     },
@@ -42,6 +45,11 @@ var schema = new mongoose.Schema({
     }
 });
 
+schema.pre('save', function (next) {
+  this.fullName = this.firstName + ' ' + this.lastName;
+  next();
+});
+
 // method to remove sensitive information from user objects before sending them out
 schema.methods.sanitize = function () {
     return _.omit(this.toJSON(), ['password', 'salt']);
@@ -55,7 +63,8 @@ schema.statics.findOrCreate = function (query) {
         var newUser = new User({
             email: query.email,
             password: query.password,
-            firstName: query.firstName
+            firstName: query.firstName,
+            lastName: query.lastName
         });
         return newUser.save()
     })
